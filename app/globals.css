@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@import "tailwindcss";
+
+/* 🛠️ DAFTARKAN ANIMASI MARQUEE DI SINI */
+@theme {
+  --animate-marquee-infinite: marquee 5s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0%); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+@keyframes infiniteScroll {
+  20% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-infinite-scroll {
+  animation: infiniteScroll 15s linear infinite;
+}
+
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+background-color: #f8fafc; /* Warna putih abu-abu terang seperti referensi */
+  color: #0f172a;
+}
+
+.perspective-container{
+  perspective: 1500px;
+}
+
+/* Di dalam globals.css */
+.expanding-border-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.expanding-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e3fae, #033463); /* Biru ke hijau */
+  transform: scale(0);
+  transition: transform 0.5s ease;
+  z-index: 0;
+}
+
+.expanding-border-card:hover::before {
+  transform: scale(1);
+}
+
+.expanding-border-card > * {
+  position: relative;
+  z-index: 1; /* Memastikan konten tetap di atas border */
+}
+
+/* Di bagian paling bawah globals.css */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Geser setengah panjang kontainer kloning */
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite; /* Kecepatan jalan (25 detik). Ubah angka ini untuk percepat/perlambat */
+}
+
+/* Trik opsional: Berhenti berjalan sebentar saat kursor mouse menyentuh kartu */
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}
+
