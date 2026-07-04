@@ -45,7 +45,7 @@ export default async function DetailProduk({ params }: { params: Promise<{ id: s
             // 🛠️ PASTIKAN SUDAH TIDAK ADA KATA onError DI SINI
           />
         </div>
-         <div className="mt-8">
+            <div className="mt-8">
               <h4 className="text-sm font-bold text-slate-900">Syarat & Ketentuan</h4>
               <p className="text-xs text-[#1e3fae] mt-2">Biaya Pesang Baru 150k Di Bayarkan Saat installasi Pemasangan Di lokasi Anda <br /> Biaya Pasang Belum Termasuk PPN 11% <br /> Kontrak Minimal 1 Tahun</p>
             </div>

@@ -18,10 +18,7 @@ export default function Hero() {
       {/* 3. Konten Utama: Naik ke Atas Overlay Menggunakan z-20 */}
       <div className="relative z-20 max-w-3xl text-left text-white mt-16 animate-fade-in">
         
-        {/* Sub-heading kecil */}
-        <span className="text-xs font-bold uppercase tracking-widest text-blue-400 font-mono bg-blue-950/40 border border-blue-800/30 px-3 py-1.5 rounded-full backdrop-blur-sm">
-          DANANTARA TELKOM DAN INDIBIZ
-        </span>
+        
 
         {/* Judul Utama */}
         <h1 className="text-4xl md:text-6xl font-black text-white tracking-tight mt-6 leading-[1.15]">

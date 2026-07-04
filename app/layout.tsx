@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Company Profile Premium",
+  title: "IndiBiz Bandung Barat",
   description: "Landing page built with Next.js, TS, and GSAP",
 };
 

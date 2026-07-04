@@ -9,9 +9,7 @@ interface LogoItem {
 const logos: LogoItem[] = [
   { name: 'Telkom Indonesia', src: '/poster/telkom.png' },
   { name: 'Telkomsel', src: '/poster/danantara.png' },
-  { name: 'IndiHome', src: '/poster/sekolah.jpg' },
   { name: 'Satu', src: '/poster/indibizlogo2-removebg-preview.png' },
-  { name: 'Digihub', src: '/poster/logo-digihub.png' },
 ];
 
 export default function RunningLogo() {

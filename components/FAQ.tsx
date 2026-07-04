@@ -14,7 +14,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: 'Apakah biaya pasang baru bisa dicicil atau dibayar belakangan?',
-    answer: 'Sesuai kebijakan, biaya pasang baru sebesar Rp 150.000 wajib dibayarkan secara tunai/transfer langsung saat proses instalasi fisik selesai dilakukan di lokasi Anda.',
+    answer: 'Sesuai kebijakan, biaya pasang baru wajib dibayarkan secara transfer langsung saat proses instalasi fisik selesai dilakukan di lokasi Anda.',
   },
   {
     question: 'Apakah kecepatan download dan upload Indibiz sama besar?',

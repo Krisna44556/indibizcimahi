@@ -112,7 +112,7 @@ const getNavLinkClass = (id: string) => {
         <Link href="/#paket" className={getNavLinkClass('paket')}>Paket</Link>
         <Link href="/#produk-digital" className={getNavLinkClass('produk-digital')}>Produk Digital</Link>
         <Link href="/#area-layanan" className={getNavLinkClass('area-layanan')}>Area Layanan</Link>
-        <Link href="/#testimoni" className={getNavLinkClass('testimoni')}>Testimoni</Link>
+        <Link href="/#testimoni" className={getNavLinkClass('testimoni')}>Artikel</Link>
       </div>
 
        <div className="flex items-center gap-1">
