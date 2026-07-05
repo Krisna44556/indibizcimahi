@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 interface MenuItem {
   name: string;
@@ -10,12 +11,28 @@ interface MenuItem {
 }
 
 export default function Navbar() {
+
+  const pathname = usePathname(); // Ambil jalur URL saat ini (misal: '/' atau '/produk-digital/managed-wifi')
+  const isHomePage = pathname === '/'; // Cek apakah sedang di beranda atau bukan
+
+
   // State untuk menyimpan ID seksi yang sedang aktif dilihat user
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
 
  // 1. Efek untuk mengubah latar belakang Navbar saat di-scroll
   useEffect(() => {
+    // Jika BUKAN di halaman utama, paksa navbar selalu berwarna (tidak boleh transparan)
+    if (!isHomePage) {
+      setIsScrolled(true);
+      setActiveSection('artikel'); // Kunci tombol aktif pada menu "Produk Digital"
+      return;
+    }
+
+    // Jika KEMBALI ke halaman utama, jalankan deteksi scroll normal
+    setIsScrolled(window.scrollY > 20);
+    setActiveSection('home');
+
     const handleScroll = () => {
       if (window.scrollY > 20) {
         setIsScrolled(true);
@@ -26,14 +43,15 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+  }, [isHomePage, pathname]);
+ 
+  // 2. Efek Intersection Observer (Hanya berjalan aktif jika berada di Halaman Utama)
   useEffect(() => {
-    const sections = ['home', 'paket', 'produk-digital', 'area-layanan', 'testimoni'];
-    
+    if (!isHomePage) return;
+
+    const sections = ['home', 'paket', 'produk-digital', 'area-layanan', 'artikel'];
     const observerOptions = {
       root: null,
-      // Memicu perpindahan tombol aktif ketika seksi mencapai area tengah layar
       rootMargin: '-30% 0px -50% 0px',
       threshold: 0,
     };
@@ -47,22 +65,20 @@ export default function Navbar() {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    // Mulai mengamati setiap elemen HTML yang memiliki ID di atas
     sections.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isHomePage]);
 
 const menuItems = [
   { name: 'Home', id: 'home', href: '/#' },
   { name: 'Paket', id: 'paket', href: '#paket' },
   { name: 'Produk Digital', id: 'produk-digital', href: '#produk-digital' },
   { name: 'Area Layanan', id: 'area-layanan', href: '#area-layanan' },
-  { name: 'Testimoni', id: 'testimoni', href: '#testimoni' },
+  { name: 'Artikel', id: 'artikel', href: '/#artikel' },
 ];
 
 
@@ -112,7 +128,7 @@ const getNavLinkClass = (id: string) => {
         <Link href="/#paket" className={getNavLinkClass('paket')}>Paket</Link>
         <Link href="/#produk-digital" className={getNavLinkClass('produk-digital')}>Produk Digital</Link>
         <Link href="/#area-layanan" className={getNavLinkClass('area-layanan')}>Area Layanan</Link>
-        <Link href="/#testimoni" className={getNavLinkClass('testimoni')}>Artikel</Link>
+        <Link href="/artikel" className={getNavLinkClass('artikel')}>Artikel</Link>
       </div>
 
        <div className="flex items-center gap-1">
