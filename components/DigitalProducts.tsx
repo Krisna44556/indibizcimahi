@@ -19,32 +19,32 @@ export default function DigitalProducts() { // Pastikan nama komponen sesuai
     {
       id: 'managed-wifi',
       title: 'WIFI Managed Service',
-      desc: 'Jaringan WiFi profesional yang terkelola penuh untuk kebutuhan kantor dan bisnis skala besar.',
-      bgImage: '/poster/managed-wifi-cover.jpg',
+      desc: 'Jaringan Bisnis Makin Eksis Dengan WIFI Managed Service.',
+      bgImage: '/poster/wifi2.jpeg',
     },
     {
       id: 'cctv',
       title: 'IndiBiz Antares Eazy',
-      desc: 'Sistem keamanan pantau pintar 24/7 dengan integrasi penyimpanan cloud aman.',
-      bgImage: '/poster/cctv-security-cover.jpg',
+      desc: 'Cipatakan Bisnis Yang Lebih Aman, Dengan Akses WIFI Dan Monitor Yang Dapat Memantau Aktivitas Bisnis Di Setiap Sudut Ruangan.',
+      bgImage: '/poster/camera2.jpeg',
     },
     {
       id: 'oca',
       title: 'IndiBiz Oca',
-      desc: 'Penyimpanan data bisnis lokal yang aman, cepat, dan mudah diakses dari mana saja.',
-      bgImage: '/poster/cloud-storage-cover.jpg',
+      desc: 'Ciptakan Komunikasi Bisnis Yang Lebih Mudah Dan Menyenangkan Dengan Dukungan Konektivitas Yang Handal.',
+      bgImage: '/poster/komunikasi.jpeg',
     },
     {
       id: 'pijar-sekolah',
       title: 'IndiBiz Pijar',
-      desc: 'Aplikasi kasir & inventory modern untuk kelancaran transaksi harian usaha Anda.',
-      bgImage: '/poster/pijar-cover.jpg',
+      desc: 'Ciptakan Sistem Pembelajaran Digital Yang Lebih Mudah Dan Menyenangkan Dengan Dukungan Konektivitas Terbaik.',
+      bgImage: '/poster/sekolah2.jpeg',
     },
     {
       id: 'netmonk',
       title: 'IndiBiz NetMonk',
-      desc: 'Pembuatan profil perusahaan digital profesional untuk meningkatkan branding pasar.',
-      bgImage: '/poster/netmonk-cover.jpg',
+      desc: 'Solusi Mudah Mengelola Jaringan Bisnis Dengan IndiBiz NetMonk.',
+      bgImage: '/poster/jaringan.jpeg',
     },
   ];
   const sectionRef = useRef<HTMLDivElement>(null);
