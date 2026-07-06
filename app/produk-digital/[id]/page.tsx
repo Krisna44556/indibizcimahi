@@ -26,7 +26,7 @@ export default async function DetailProduk({ params }: { params: Promise<{ id: s
     },
     'cctv': {
       title: 'CCTV Security',
-      originalImage: '/poster/cctv.jpg', // 👈 Gambar Brosur Asli
+      originalImage: '/poster/cctv-security.jpg', // 👈 Gambar Brosur Asli
     },
     'oca': {
       title: 'IndiBiz Oca',
