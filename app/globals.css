@@ -66,7 +66,7 @@ background-color: #f8fafc; /* Warna putih abu-abu terang seperti referensi */
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, #1e3fae, #033463); /* Biru ke hijau */
+  background: bg-cover bg-center bg-no-repeat; /* Biru ke hijau */
   transform: scale(0);
   transition: transform 0.5s ease;
   z-index: 0;
