@@ -14,6 +14,7 @@ export default function Navbar() {
 
   const pathname = usePathname(); // Ambil jalur URL saat ini (misal: '/' atau '/produk-digital/managed-wifi')
   const isHomePage = pathname === '/'; // Cek apakah sedang di beranda atau bukan
+  const [isOpen, setIsOpen] = useState(false);
 
 
   // State untuk menyimpan ID seksi yang sedang aktif dilihat user
@@ -97,9 +98,6 @@ const getNavLinkClass = (id: string) => {
   };
 
   return (
-
-  
-
   <header 
     className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled 
@@ -113,13 +111,21 @@ const getNavLinkClass = (id: string) => {
         : "bg-transparent border-b border-white/5"
       }`}>
 
-      {/* 1. Logo Brand */}
-      <div className="flex items-center gap-4">
-        {/* Kamu tinggal ganti src di bawah ini dengan logo barumu nanti */}
-        <img src="/poster/image1.png" alt="Partner 1" className="h-27 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" />
-        <img src="/poster/images2.png" alt="Partner 2" className="h-27 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity" />
-      </div>
+     {/* 🗺️ AREA LOGO (KIRI) - Diberikan w-auto / flex-shrink-0 agar ukurannya solid */}
+        <Link href="/" className="flex items-center gap-3 md:gap-4 shrink-0">
+          
 
+          {/* Pembatas Vertikal Desktop */}
+          
+
+          {/* Logo Partner (Hanya muncul di desktop layar lebar) */}
+          <div className="hidden lg:flex items-center gap-10 shrink-10">
+            <img src="/poster/telkom.png" alt="Telkom Indonesia" className="h-16 w-auto object-contain" />
+            <div className="hidden lg:block h-10 w-[1px] bg-slate-200"></div>
+            <img src="/poster/image1.png" alt="Indibiz" className="h-20 w-auto object-contain" />
+          </div>
+        </Link>
+        
       {/* 2. Menu Navigasi dengan Deteksi Otomatis */}
       <div className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-500 ${
         isScrolled ? "bg-slate-50 border border-slate-100" : "bg-white/5 border border-white/10 backdrop-blur-sm"
@@ -142,12 +148,69 @@ const getNavLinkClass = (id: string) => {
 
       
       {/* 3. Tombol Aksi */}
-      <Link 
-        href="https://wa.me/xxxx" 
-        className="bg-blue-600 text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-blue-700 transition-all shadow-sm"
+     <div className="hidden md:block">
+          <Link 
+            href="https://wa.me/628xxxxxx" 
+            target="_blank"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-2.5 rounded-full shadow-md shadow-blue-600/10 transition-all"
+          >
+            Chat WhatsApp
+          </Link>
+        </div>
+      
+      {/* 🛠️ HAMBURGER BUTTON (Hanya muncul di Mobile) */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} // Toggle state true/false
+          type="button"
+          className="md:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-50 transition-colors"
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? (
+            // Ikon Silang (X) saat menu terbuka
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            // Ikon Garis Tiga (Hamburger) saat menu tertutup
+            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
+
+        {/* 🛠️ MOBILE MENU PANEL (Animasi Dropdown Slide-Down) */}
+      <div 
+        className={`md:hidden absolute top-20 left-0 w-full bg-white border-b border-slate-100 transition-all duration-300 ease-in-out shadow-lg overflow-hidden ${
+          isOpen ? 'max-h-[400px] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        }`}
       >
-        Chat WhatsApp
-      </Link>
+        <div className="px-6 py-6 flex flex-col gap-5">
+          {menuItems.map((link, i) => (
+            <Link 
+              key={i} 
+              href={link.href}
+              onClick={() => setIsOpen(false)} // Otomatis tutup menu kalau link diklik
+              className="text-base font-bold text-slate-700 hover:text-blue-600 transition-colors block"
+            >
+              {link.name}
+            </Link>
+          ))}
+          
+          <hr className="border-slate-100 my-1" />
+          
+          {/* Tombol WA versi Mobile */}
+          <Link 
+            href="https://wa.me/628xxxxxx"
+            target="_blank"
+            onClick={() => setIsOpen(false)}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-center py-3 rounded-full shadow-md block transition-all"
+          >
+            Chat WhatsApp
+          </Link>
+        </div>
+      </div>
+
+
 
     </nav>
     </header>

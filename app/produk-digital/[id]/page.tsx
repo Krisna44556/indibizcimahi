@@ -1,80 +1,100 @@
-// app/produk-digital/[id]/page.tsx
+import Link from 'next/link';
+import PosterBox from '@/components/PosterBox';
 
-import Link from "next/link";
+// 1. Kunci agar Next.js tidak mencari id lain di luar yang didaftarkan (Wajib untuk static export)
+export const dynamicParams = false;
 
-// 1. Tambahkan fungsi ini agar Next.js tahu ID apa saja yang akan dicetak jadi HTML statis
+// 2. Daftarkan semua slug/id produk yang ada di website kamu agar tidak error 500 lagi
 export async function generateStaticParams() {
-  // Masukkan 5 ID produk digital sesuai brosur Indibiz milik klienmu
   return [
     { id: 'managed-wifi' },
-    { id: 'netmonk' },
-    { id: 'pijar-sekolah' },
     { id: 'oca' },
-    { id: 'cctv' }
+    { id: 'netmonk' },
+    { id: 'cctv' },
+    { id: 'pijar-sekolah' },
   ];
 }
 
-export default async function DetailProduk({ params }: { params: Promise<{ id: string }> }) {
-  
-  const { id } = await params;
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
-  // Pasangkan ID dengan Gambar Asli / Brosurnya di sini
-  const detailData: Record<string, { title: string; originalImage: string }> = {
+export default async function DetailProdukPage({ params }: PageProps) {
+  // Buka Promise params di sisi server (Next.js 15)
+  const resolvedParams = await params;
+  const id = resolvedParams.id;
+
+  // DATA KONTEN LAYANAN
+  const kontenLayanan: Record<string, { title: string; bgImage: string }> = {
     'managed-wifi': {
       title: 'WIFI Managed Service',
-      originalImage: '/poster/managed-wifi.jpg', // 👈 Gambar Brosur Asli
-    },
-    'cctv': {
-      title: 'CCTV Security',
-      originalImage: '/poster/cctv-security.jpg', // 👈 Gambar Brosur Asli
+      bgImage: '/poster/w.jpeg', 
     },
     'oca': {
-      title: 'IndiBiz Oca',
-      originalImage: '/poster/cloud-storage.jpg',
-    },
-    'pijar-sekolah': {
-      title: 'IndiBiz Pijar',
-      originalImage: '/poster/pijar.jpg',
+      title: 'Omnichannel Customer Assistant (OCA)',
+      bgImage: '/poster/ocafix.png', 
     },
     'netmonk': {
-      title: 'IndiBiz NetMonk',
-      originalImage: '/poster/netmonk.jpg',
+      title: 'Cloud Infrastructure Storage',
+      bgImage: '/poster/netmonkfix.png',
+    },
+    'cctv': {
+      title: 'Antarez Eazy ',
+      bgImage: '/poster/eazyfix.png',
+    },
+    'pijar-sekolah': {
+      title: 'Pijar Sekolah',
+      bgImage: '/poster/pijafix.png',
     },
   };
 
- const currentProduct = detailData[id] || detailData['cctv'];
-  return (
-    <main className="w-full min-h-screen bg-slate-50 pt-25 px-6 flex flex-col items-center">
-      <div className="max-w-4xl w-full bg-white rounded-[32px] p-8 md:p-12 border border-slate-100 shadow-sm text-center">
-        
-        <h1 className="text-3xl font-extrabold text-[#1e3fae] mb-2">{currentProduct.title}</h1>
-        <p className="text-[#1e3fae] text-sm mb-8">Halaman Detail Brosur dan Poster Layanan Digital</p>
+  const produkAktif = kontenLayanan[id] || { 
+    title: 'Layanan Digital', 
+    bgImage: '/poster/managed-wifi.jpg' 
+  };
 
-                {/* TOMBOL KEMBALI */}
-        <Link 
-          href="/#produk-digital" 
-          className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 bg-white px-5 py-2.5 rounded-full shadow-sm border border-slate-100 transition-all mb-8 group"
-        >
+  const isManagedWifi = id === 'managed-wifi';
+
+  return (
+    <div className="w-full min-h-screen pt-31 pb-10 bg-slate-50/50">
+      <div className="max-w-10xl mx-auto px-3 flex flex-col items-center">
+        
+        {/* HEADER JUDUL */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-black text-blue-900 mb-2">{produkAktif.title}</h1>
+          <p className="text-slate-500 font-medium">Halaman Detail Brosur dan Poster Layanan Digital</p>
+        </div>
+
+        {/* TOMBOL KEMBALI */}
+        <Link href="/#produk-digital" className="bg-white hover:bg-slate-50 text-blue-600 font-bold border border-slate-200 px-6 py-2.5 rounded-full shadow-sm transition-all mb-12 inline-block text-center">
           Kembali ke Beranda
         </Link>
 
-        {/* Kontainer Tempat Poster Gambar */}
-        <div className="w-full bg-slate-50 rounded-2xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-inner p-4 mt-8">
-          <img 
-            src={currentProduct.originalImage} 
-            alt={`Poster ${currentProduct.title}`}
-            className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
-            // 🛠️ PASTIKAN SUDAH TIDAK ADA KATA onError DI SINI
-          />
-        </div>
-            <div className="mt-8">
-              <h4 className="text-sm font-bold text-slate-900">Syarat & Ketentuan</h4>
-              <p className="text-xs text-[#1e3fae] mt-2">Biaya Pesang Baru 150k Di Bayarkan Saat installasi Pemasangan Di lokasi Anda <br /> Biaya Pasang Belum Termasuk PPN 11% <br /> Kontrak Minimal 1 Tahun</p>
-            </div>
-         
-      </div>
-      
+        {/* ========================================================================= */}
+        {/* KONDISIONAL LAYOUT */}
+        {/* ========================================================================= */}
+        {isManagedWifi ? (
+          /* LAYOUT KHUSUS MANAGED WIFI: 2 GAMBAR SEJAJAR BERDAMPINGAN */
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl items-start bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-slate-100">
+            <PosterBox src="/poster/w.jpeg" alt="Wifi Poster 1" />
+            <PosterBox src="/poster/manage-wifi-brosur.jpeg" alt="Wifi Poster 2" />
+          </div>
+        ) : (
+          /* LAYOUT STANDAR UNTUK LAYANAN LAIN: 1 GAMBAR DI TENGAH */
+          <div className="w-full max-w-2xl bg-white p-6 md:p-8 rounded-[32px] shadow-sm border border-slate-100 flex justify-center">
+            <PosterBox src={produkAktif.bgImage} alt={produkAktif.title} />
+          </div>
+        )}
+        {/* ========================================================================= */}
 
-    </main>
+        <div className="text-center mt-8">
+            <h2 className="text-3xl font-black text-blue-900 mb-2">Syarat Dan ketentuan</h2>
+            <p className="text-slate-500 font-medium">Baiya Pasang Baru 150.000 Dan DIbayarkan Saat Installasi Pemesanan DI Lokasi Anda</p>
+            <p className="text-slate-500 font-medium">Baiya Pasang Belum Termasuk PPN 11%</p>
+            <p className="text-slate-500 font-medium">Kontrak Minimal 1 Tahun</p>
+        </div>
+
+      </div>
+    </div>
   );
 }
