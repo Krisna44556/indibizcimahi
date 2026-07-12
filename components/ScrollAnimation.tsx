@@ -1,35 +1,41 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion, Variants } from "framer-motion";
 
-export default function ScrollAnimation({ children }: { children: React.ReactNode }) {
-  // Konfigurasi animasi untuk setiap seksi/konten di dalamnya
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
+interface ScrollAnimationProps {
+  children: React.ReactNode;
+}
 
+// 1. Deklarasikan tipe data Variants dan ubah kemiringan (ease) menjadi cubic-bezier array
+const sectionVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50 
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.42, 0, 0.58, 1], // Format cubic-bezier standar yang disukai TypeScript
+    },
+  },
+};
+
+export default function ScrollAnimation({ children }: ScrollAnimationProps) {
   return (
-    <div className="space-y-0">
-      {React.Children.map(children, (child) => {
-        if (!child) return null;
-        
-        return (
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-120px" }}
-            variants={sectionVariants}
-          >
-            {child}
-          </motion.div>
-        );
-      })}
-    </div>
+    <>
+      {React.Children.map(children, (child) => (
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-120px" }}
+          variants={sectionVariants}
+        >
+          {child}
+        </motion.div>
+      ))}
+    </>
   );
 }
