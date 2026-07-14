@@ -7,6 +7,10 @@
   --foreground: #171717;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @import "tailwindcss";
 
 /* 🛠️ DAFTARKAN ANIMASI MARQUEE DI SINI */

@@ -21,14 +21,12 @@ export default function VisiMisiPerusahaan() {
   ];
 
   return (
-    <section id="visimisi" className="py-10 bg-slate-50">
-      <div className="relative rounded-[35px] min-h-[300px] shadow-xl overflow-hidden flex items-center justify-center p-8 md:p-12">  
+    <section id="visimisi" className="w-full py-16 px-4 md:px-8 bg-slate-50">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">  
           {/* 1. BACKGROUND MEDIA (Dipaksa mutlak memenuhi kotak) */}
-          <div 
-              className="w-full rounded-[35px] min-h-[350px] shadow-xl overflow-hidden flex items-center justify-center p-8 md:p-12 bg-fixed bg-cover bg-center relative"
+          <div className="w-full rounded-[35px] min-h-[350px] shadow-xl overflow-hidden flex items-center justify-center p-8 md:p-12 bg-fixed bg-cover bg-center relative"
               style={{ backgroundImage: "url('/poster/wifi.jpeg')" }} 
             >
-  
           {/* Lapisan Gelap Permanen di atas gambar agar teks putih tetap kontras & tajam dibaca */}
           <div className="absolute inset-0 bg-slate-950/70 z-0"></div>
   

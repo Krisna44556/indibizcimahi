@@ -10,18 +10,29 @@ interface MenuItem {
 }
 
 export default function Navbar() {
-  const pathname = usePathname();
+
+  const pathname = usePathname(); // Ambil jalur URL saat ini (misal: '/' atau '/produk-digital/managed-wifi')
+  const isHomePage = pathname === '/'; // Cek apakah sedang di beranda atau bukan
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setMounted] = useState(false);
+
+
+  // State untuk menyimpan ID seksi yang sedang aktif dilihat user
   const [activeSection, setActiveSection] = useState('home');
-  
-  // 1. STATE BARU UNTUK MENDETEKSI SCROLL
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    // Jika BUKAN di halaman utama, paksa navbar selalu berwarna (tidak boleh transparan)
+    if (!isHomePage) {
+      setIsScrolled(true);  
+      return;
+    }
 
-    // Fungsi untuk ngecek posisi scroll
+    // Jika KEMBALI ke halaman utama, jalankan deteksi scroll normal
+    setIsScrolled(window.scrollY > 20);
+    setActiveSection('home');
+
     const handleScroll = () => {
       if (window.scrollY > 20) {
         setIsScrolled(true);
@@ -32,16 +43,43 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage, pathname]);
+
+ useEffect(() => {
+    if (!isHomePage) return;
+
+    const sections = ['home', 'paket','visimisi', 'arealayanan', 'artikel'];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-30% 0px -50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [isHomePage]);
 
   if (!isMounted) return null;
 
   const menuItems: MenuItem[] = [
     { name: 'Home', id: 'home', href: '/' },
-    { name: 'Paket', id: 'pricing', href: '#pricing' },
-    { name: 'Visi Misi', id: 'visimisi', href: '#visimisi' },
-    { name: 'Area Layanan', id: 'arealayanan', href: '#arealayanan' },
-    { name: 'Artikel', id: 'artikel', href: '#artikel' },
+    { name: 'Paket', id: 'paket', href: '/#paket' },
+    { name: 'Visi Misi', id: 'visimisi', href: '/#visimisi' },
+    { name: 'Area Layanan', id: 'arealayanan', href: '/#arealayanan' },
+    { name: 'Artikel', id: 'artikel', href: '/#artikel' },
   ];
 
   return (
@@ -57,32 +95,61 @@ export default function Navbar() {
       {/* Gunakan h-10 atau h-12 sebagai batas maksimal area logo agar serasi */}
       <div className="flex items-center gap-4 h-12">
         <div className="flex items-center gap-3 h-full">
-          
-          {/* Logo Telkom: Paksa tinggi maksimal hanya 24px (h-6) */}
-          <img 
-            src="/poster/image1.png" 
-            alt="Telkom Indonesia" 
-            className="h-15 max-h-15 w-auto object-contain block" 
-          />
-          
-          <div className={`h-4 w-[1px] transition-colors duration-300 ${isScrolled ? 'bg-slate-300' : 'bg-white/30'}`}></div>
-          
-          {/* Logo Danantara: Paksa tinggi maksimal hanya 20px (h-5) */}
-          <img 
-            src="/poster/images2.png" 
-            alt="Danantara" 
-            className="h-19 max-h-19 w-auto object-contain block" 
-          />
-          
-          <div className={`h-4 w-[1px] transition-colors duration-300 ${isScrolled ? 'bg-slate-300' : 'bg-white/30'}`}></div>
-          
-          <span className={`font-black text-sm tracking-tight transition-colors duration-300 ${
-            isScrolled ? 'text-slate-900' : 'text-white'
-          }`}>
-            indibiz
-          </span>
 
+          {/* TAMPILAN MOBILE: HANYA SATU LOGO INDIBIZ */}
+          <div className="flex md:hidden items-center gap-2">
+            <Link href="/#home" className="flex items-center gap-2">
+              <img 
+                src="/poster/indibizlogo2-removebg-preview.png" 
+                alt="Logo Indibiz" 
+                className="h-8 w-auto object-contain" 
+              />
+              <span className={`font-black text-xl tracking-tight transition-colors duration-300 ${isScrolled ? 'text-[#1e3fae]' : 'text-white'}`}>
+                Indibiz
+              </span>
+            </Link>
+          </div>
+          
+        {/* TAMPILAN DESKTOP: LOGO LENGKAP (Telkom | Danantara | Indibiz) */}
+          <div className="hidden md:flex items-center gap-3 h-full">
+            {/* Logo Telkom */}
+            <div>
+              <Link href="/#home" className="block h-full">
+                <img 
+                  src="/poster/image1.png" 
+                  alt="Telkom Indonesia" 
+                  className="h-7 max-h-7 w-auto object-contain block" 
+                />
+              </Link>
+            </div>
+            
+            <div className={`h-4 w-[1px] transition-colors duration-300 ${isScrolled ? 'bg-slate-300' : 'bg-white/30'}`}></div>
+            
+            {/* Logo Danantara */}
+            <div>
+              <Link href="/#home" className="block h-full">
+                <img 
+                  src="/poster/images2.png" 
+                  alt="Danantara" 
+                  className="h-6 max-h-6 w-auto object-contain block" 
+                />
+              </Link>
+            </div>
+
+            <div className={`h-4 w-[1px] transition-colors duration-300 ${isScrolled ? 'bg-slate-300' : 'bg-white/30'}`}></div>
+            
+            {/* Logo Indibiz */}
+            <div className="flex items-center gap-1 font-black text-2xl tracking-tight transition-colors duration-300">
+              <img 
+                src="/poster/indibizlogo2-removebg-preview.png" 
+                alt="LogoIndibiz" 
+                className="h-8 w-auto object-contain" 
+              />
+              <Link href="/" className={isScrolled ? 'text-[#1e3fae]' : 'text-white'}>Indibiz</Link>
+            </div>
+          </div>
         </div>
+
       </div>
 
         {/* ================= SISI KANAN: MENU NAVIGASI DAN BUTTON ================= */}
@@ -133,21 +200,30 @@ export default function Navbar() {
 
       {/* MOBILE DROPDOWN MENU */}
       {isOpen && (
-        <div className="md:hidden mt-4 bg-white rounded-2xl p-4 shadow-xl border border-slate-100 space-y-3 flex flex-col">
-          {menuItems.map((item) => (
-            <Link
-              key={item.id}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-slate-600 font-medium text-sm hover:text-[#00a8ec] px-2 py-1 block"
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="absolute top-20 left-0 right-0 w-full bg-white shadow-xl border-b border-slate-100 flex flex-col z-50 animate-in fade-in slide-in-from-top-5 duration-200">
+        <div className="flex flex-col p-6 space-y-4 max-w-7xl mx-auto w-full">
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.id;
+             return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`font-semibold text-base py-2.5 px-4 rounded-xl transition-all ${
+                    isActive
+                      ? 'bg-[#00a8ec]/10 text-[#00a8ec]'
+                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+          })}
           <a href="https://wa.me/628xxxxxxxx" className="bg-[#00a8ec] text-white text-center text-sm font-bold py-2.5 rounded-xl block">
             Chat WhatsApp
           </a>
         </div>
+      </div>
       )}
     </nav>
   );

@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="id" data-scroll-behavior="smooth">
       <body className={`${inter.className} bg-slate-950 text-white antialiased`}>
         {/* 2. Taruh Navbar di paling atas */}
         <Navbar />

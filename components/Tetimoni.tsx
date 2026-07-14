@@ -14,7 +14,7 @@ const testimonials: TestimonialItem[] = [
     id: 1,
     name: 'Budi Santoso',
     role: 'Pemilik Toko Kelontong Modern',
-    company: 'Sembako Jaya Padalarang',
+    company: 'Sembako Jaya Cimahi Utara',
     message: 'Sejak pakai Indibiz, kasir digital dan CCTV online di toko tidak pernah putus koneksi lagi. Kirim laporan harian jadi super cepat dan omset terpantau aman!',
     avatarBg: 'bg-blue-600',
   },
@@ -22,7 +22,7 @@ const testimonials: TestimonialItem[] = [
     id: 2,
     name: 'Dewi Lestari',
     role: 'Founder & CEO',
-    company: 'Creative Studio Lembang',
+    company: 'Creative Studio Lengkong',
     message: 'Rasio kecepatan 1:1 nya beneran kerasa pas kami upload file video backup project ke cloud server. Upload bergiga-giga beres dalam hitungan menit. Sangat rekomen untuk UMKM digital!',
     avatarBg: 'bg-indigo-600',
   },
@@ -30,7 +30,7 @@ const testimonials: TestimonialItem[] = [
     id: 3,
     name: 'Hendra Wijaya',
     role: 'Manajer Operasional',
-    company: 'Cafe & Resto Ngamprah',
+    company: 'Cafe & Resto Regol',
     message: 'WiFi Managed Service dari Indibiz membuat pelanggan cafe betah berlama-lama karena internetnya stabil walau diakses puluhan gadget sekaligus. Support tim teknisnya juga sigap.',
     avatarBg: 'bg-slate-700',
   },
@@ -48,7 +48,7 @@ export default function Testimoni() {
             Testimoni Pelanggan
           </span>
           <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-3">
-            Dipercaya oleh Pelaku Bisnis <br />di Bandung Barat
+            Dipercaya oleh Pelaku Bisnis <br /> Area Bandung & Cimahi
           </h2>
           <p className="text-slate-500 text-sm md:text-base mt-4">
             Dengarkan langsung cerita sukses dari para pemilik usaha yang telah meningkatkan produktivitasnya bersama jaringan andal kami.

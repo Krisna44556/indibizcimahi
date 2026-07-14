@@ -17,7 +17,7 @@ const sectionVariants: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 1.2,
       ease: [0.42, 0, 0.58, 1], // Format cubic-bezier standar yang disukai TypeScript
     },
   },
