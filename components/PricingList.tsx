@@ -66,12 +66,12 @@ export default function PricingList() {
           
           {/* Contoh Kartu Paket (Bisa Anda looping dari data asli nanti) */}
           {[
-            { mbps: '50', harga: '320.000', tipe: 'BASIC' },
-            { mbps: '75', harga: '365.000', tipe: 'BASIC' },
-            { mbps: '100', harga: '440.000', tipe: 'BASIC' },
-            { mbps: '150', harga: '540.000', tipe: 'BASIC' },
-            { mbps: '200', harga: '675.000', tipe: 'BASIC' },
-            { mbps: '300', harga: '950.000', tipe: 'BASIC' },
+            { mbps: '50', harga: '320.000', tipe: 'BISNIS' },
+            { mbps: '75', harga: '365.000', tipe: 'BISNIS' },
+            { mbps: '100', harga: '440.000', tipe: 'BISNIS' },
+            { mbps: '150', harga: '540.000', tipe: 'BISNIS' },
+            { mbps: '200', harga: '675.000', tipe: 'BISNIS' },
+            { mbps: '300', harga: '950.000', tipe: 'BISNIS' },
           ].map((paket, index) => (
 
             
@@ -92,6 +92,10 @@ export default function PricingList() {
               <div className="mt-6 pt-4 border-t border-slate-50 space-y-4">
                 <div className="text-xs text-slate-500 space-y-1">
                   <p className="font-bold text-slate-700 text-sm">PAKET {paket.tipe}</p>
+                   <p className="font-bold text-slate-700 text-sm">NON FUP </p>
+                  <p className="font-bold text-slate-700 text-sm">KONEKSI STABIL </p>
+                  <p className="font-bold text-slate-700 text-sm">SUPPORT 24/7 </p>
+                  <p className="font-bold text-slate-700 text-sm">KECEPATAN SIMETRIS 1 : 1 </p>
                   <p>Biaya pasang Rp 150.000 + PPN 11%</p>
                 </div>
 

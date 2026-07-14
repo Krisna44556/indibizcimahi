@@ -118,7 +118,7 @@ export default function Navbar() {
                 <img 
                   src="/poster/image1.png" 
                   alt="Telkom Indonesia" 
-                  className="h-7 max-h-7 w-auto object-contain block" 
+                  className="h-19 max-h-19 w-auto object-contain block" 
                 />
               </Link>
             </div>
@@ -131,7 +131,7 @@ export default function Navbar() {
                 <img 
                   src="/poster/images2.png" 
                   alt="Danantara" 
-                  className="h-6 max-h-6 w-auto object-contain block" 
+                  className="h-21 max-h-21 w-auto object-contain block" 
                 />
               </Link>
             </div>
