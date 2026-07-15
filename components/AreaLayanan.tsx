@@ -57,9 +57,14 @@ export default function AreaLayanan() {
         </div>
       </div>
       
-      <button className="mt-8 w-full bg-[#0b2347] hover:bg-[#143564] text-white text-sm font-bold py-3 rounded-xl transition-all">
-        Cek Alamat Rumah
-      </button>
+         <a 
+            href="https://wa.me/6282338263646?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="mt-8 w-full bg-[#0b2347] hover:bg-[#143564] text-white text-sm font-bold py-3 rounded-xl transition-all text-center"
+          >
+          Cek Alamat Rumah
+          </a>
     </div>
 
     {/* KARTU KOTA CIMAHI */}
@@ -80,9 +85,14 @@ export default function AreaLayanan() {
         </div>
       </div>
       
-      <button className="mt-8 w-full bg-[#0b2347] hover:bg-[#143564] text-white text-sm font-bold py-3 rounded-xl transition-all">
-        Cek Alamat Rumah
-      </button>
+         <a 
+            href="https://wa.me/6282338263646?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="mt-8 w-full bg-[#0b2347] hover:bg-[#143564] text-white text-sm font-bold py-3 rounded-xl transition-all text-center"
+          >
+          Cek Alamat Rumah
+          </a>
     </div>
 
   </div>

@@ -179,7 +179,7 @@ export default function Navbar() {
 
           {/* Tombol Chat WhatsApp */}
           <a 
-            href="https://wa.me/6282258122523?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps" 
+            href="https://wa.me/6282338263646?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="bg-green-500 hover:bg-green-700 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-md transition-all transform hover:scale-[1.02]"

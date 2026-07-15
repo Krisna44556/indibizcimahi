@@ -61,17 +61,17 @@ export default function PricingList() {
 
         {/* paket bisnis */}
 
-        <h1 className="text-4xl md:text-6xl font-black text-[#00a8ec] tracking-tight mt-12 leading-[1.15]"> PAKET BISNIS</h1>
+        <h1 className="text-4xl md:text-6xl font-black text-black text-center tracking-tight mt-12 leading-[1.15]"> PAKET BISNIS</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {/* Contoh Kartu Paket (Bisa Anda looping dari data asli nanti) */}
           {[
-            { mbps: '50', harga: '320.000', tipe: 'BISNIS' },
-            { mbps: '75', harga: '365.000', tipe: 'BISNIS' },
-            { mbps: '100', harga: '440.000', tipe: 'BISNIS' },
-            { mbps: '150', harga: '540.000', tipe: 'BISNIS' },
-            { mbps: '200', harga: '675.000', tipe: 'BISNIS' },
-            { mbps: '300', harga: '950.000', tipe: 'BISNIS' },
+            { mbps: '50', harga: '355.000', tipe: 'BISNIS' },
+            { mbps: '75', harga: '415.000', tipe: 'BISNIS' },
+            { mbps: '100', harga: '535.000', tipe: 'BISNIS' },
+            { mbps: '150', harga: '620.000', tipe: 'BISNIS' },
+            { mbps: '200', harga: '790.000', tipe: 'BISNIS' },
+            { mbps: '300', harga: '1.130.000', tipe: 'BISNIS' },
           ].map((paket, index) => (
 
             
@@ -100,7 +100,7 @@ export default function PricingList() {
                 </div>
 
                 <button className="w-full bg-[#00a8ec] hover:bg-[#0096dc] text-white font-bold py-3 px-4 rounded-2xl shadow-md transition-all duration-200 tracking-wide text-sm">
-                  <a href={`https://wa.me/6282258122523?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps`}>BERLANGGANAN SEKARANG</a>
+                  <a href={`https://wa.me/6282338263646?text=Halo%20Indibiz,%20saya%20mau%20berlangganan%20paket%20${paket.mbps} Mbps`}>BERLANGGANAN SEKARANG</a>
                 </button>
               </div>
             </div>

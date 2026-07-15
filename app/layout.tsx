@@ -4,6 +4,7 @@ import "./globals.css";
 // 1. Import Navbar dan Footer yang sudah kamu buat
 import Navbar from "@/components/Navbar";
 import DigitalProducts from "@/components/VisiMisi";
+import FloatingWA from "@/components/FloatingWa";
 
 import Footer from "@/components/Footer";
 
@@ -32,7 +33,7 @@ export default function RootLayout({
         {children}
 
         
-      
+        <FloatingWA />
         
        
         
